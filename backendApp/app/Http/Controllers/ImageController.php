@@ -31,7 +31,7 @@ class ImageController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input,[
-            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg,jfif:max:2048',
+            'image'=>'required',
         ]);
 
         if($validator->fails()){
@@ -41,13 +41,6 @@ class ImageController extends Controller
                 'error'=>$validator->errors(),
             ]);
         }
-
-            $image = $request->file('image');
-            $distinationPath = 'images/';
-            $ProfileImage = date('YmdHis').".".$image->getClientOriginalExtension();
-            $image->move($distinationPath,$ProfileImage);
-            $input['image'] = "$ProfileImage";
-
 
         $img = image::Create($input);
         return response()->json([
