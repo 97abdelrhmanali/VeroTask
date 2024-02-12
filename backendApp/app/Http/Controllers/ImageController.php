@@ -7,6 +7,7 @@ use App\Models\image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Nette\Utils\ImageType as UtilsImageType;
+use Symfony\Component\Console\Input\Input;
 
 class ImageController extends Controller
 {
@@ -41,6 +42,7 @@ class ImageController extends Controller
                 'error'=>$validator->errors(),
             ]);
         }
+        
 
         $img = image::Create($input);
         return response()->json([
